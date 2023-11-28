@@ -1,0 +1,26 @@
+<div class="d-flex justify-content-end mt-3">
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createUserModal">
+        <i class="bi-person-plus-fill"> Create user</i>
+    </button>
+</div>
+<div class="mt-3">
+    <div *ngIf="users && users.length > 0">
+        <div *ngFor="let user of users">
+            <app-user [userData]="user"></app-user>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="createUserModal" tabindex="-1" aria-labelledby="createModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="createModalLabel">Create new user</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <app-create-user></app-create-user>
+            </div>
+        </div>
+    </div>
+</div>

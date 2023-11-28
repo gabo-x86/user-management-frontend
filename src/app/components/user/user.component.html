@@ -1,0 +1,102 @@
+<div *ngIf="userData">
+    <div class="card mb-2">
+        <div class="card-body">
+            <div class="d-flex">
+                <div class="p-2 flex-grow-1">
+                    <h6>{{ userData.username }}</h6>
+                    <table class="table" style="width: fit-content;">
+                        <tbody>
+                            <tr>
+                                <th scope="row">First name:</th>
+                                <div *ngIf="userData.firstName; else noUserFirstName">
+                                    <td>{{ userData.firstName }}</td>
+                                </div>
+                                <ng-template #noUserFirstName>
+                                    <td class="fw-light">(No first name)</td>
+                                </ng-template>
+
+                            </tr>
+                            <tr>
+                                <th scope="row">Last name:</th>
+                                <div *ngIf="userData.lastName; else noLastName">
+                                    <td>{{ userData.lastName }}</td>
+                                </div>
+                                <ng-template #noLastName>
+                                    <td class="fw-light">(No last name)</td>
+                                </ng-template>
+                            </tr>
+                            <tr>
+                                <th scope="row">Age:</th>
+                                <div *ngIf="userData.age; else noAge">
+                                    <td>{{ userData.age }}</td>
+                                </div>
+                                <ng-template #noAge>
+                                    <td class="fw-light">(No age)</td>
+                                </ng-template>
+                            </tr>
+                            <tr>
+                                <th scope="row">Born date:</th>
+                                <div *ngIf="userData.birthDay; else noBirthday">
+                                    <td>{{ userData.birthDay }}</td>
+                                </div>
+                                <ng-template #noBirthday>
+                                    <td class="fw-light">(No born date)</td>
+                                </ng-template>
+                            </tr>
+                            <tr>
+                                <th scope="row">Email:</th>
+                                <td>{{ userData.email }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="p-1">
+                    <button type="button" class="btn btn-success" data-bs-toggle="modal"
+                        data-bs-target="#editUserModal">
+                        <i class="bi-pencil-square"> Edit</i>
+                    </button>
+                </div>
+                <div class="p-1">
+                    <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                        data-bs-target="#confirmationModal">
+                        <i class="bi-trash-fill">Delete</i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="confirmationModal" tabindex="-1" aria-labelledby="confirmationModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="confirmationModalLabel">Are you sure?</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to delete the user {{ userData.firstName }} {{ userData.lastName }}?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-danger" (click)="deleteUser(userData.id)">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="editUserModal" tabindex="-1" aria-labelledby="editUserModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="editUserModalLabel">Edit User</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <app-create-user [userData]="userData"></app-create-user>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

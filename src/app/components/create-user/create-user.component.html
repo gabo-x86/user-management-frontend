@@ -1,0 +1,97 @@
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()" class="mx-5">
+    <div class="mb-3">
+        <label for="username" class="d-block">Username: <label style="color: red;">(*)</label></label>
+        <input type="text" id="username" formControlName="username" class="w-100" required>
+        <span *ngIf="userForm?.get('username')?.hasError('required')" class="text-danger d-block">
+            This field is required (*)
+        </span>
+        <span *ngIf="userForm?.get('username')?.hasError('minLength')" class="text-danger d-block">
+            The username must have 3 characters as min
+        </span>
+        <span *ngIf="userForm?.get('username')?.hasError('maxLength')" class="text-danger d-block">
+            The username must have 20 characters as max
+        </span>
+    </div>
+
+    <div *ngIf="!userData" class="mb-3">
+        <label for="password" class="d-block">Password: <label style="color: red;">(*)</label></label>
+        <input type="password" id="password" formControlName="password" class="w-100" required>
+        <span *ngIf="userForm?.get('password')?.hasError('required')" class="text-danger d-block">
+            This field is required (*)
+        </span>
+        <span *ngIf="userForm?.get('password')?.hasError('invalidPassword')" class="text-danger d-block">
+            The password must have 3 characters as min, 1 uppercase letter, 1 special character, and 1 number
+        </span>
+    </div>
+
+    <div *ngIf="!userData" class="mb-3">
+        <label for="passwordRepeated" class="d-block">Confirm your password: <label style="color: red;">(*)</label></label>
+        <input type="password" id="passwordRepeated" formControlName="passwordRepeated" class="w-100" required>
+        <span *ngIf="userForm?.get('passwordRepeated')?.hasError('required')" class="text-danger d-block">
+            This field is required (*)
+        </span>
+        <span *ngIf="userForm.hasError('passwordMismatch')" class="text-danger d-block">
+            The password and the confirm password have to be the same
+        </span>
+    </div>
+
+    <div class="mb-3">
+        <label for="email"class="d-block">Email: <label style="color: red;">(*)</label></label>
+        <input type="email" id="email" formControlName="email" class="w-100"required>
+        <span *ngIf="userForm?.get('email')?.hasError('required')" class="text-danger d-block">
+            This field is required (*)
+        </span>
+        <span *ngIf="userForm?.get('email')?.hasError('email')" class="text-danger d-block">
+            This must have a valid email
+        </span>
+    </div>
+
+    <div class="mb-3">
+        <label for="firstName" class="d-block">First Name: <label style="color: red;">(*)</label></label>
+        <input type="text" id="firstName" formControlName="firstName" class="w-100">
+        <span *ngIf="userForm?.get('firstName')?.hasError('required')" class="text-danger d-block">
+            This field is required (*)
+        </span>
+        <span *ngIf="userForm?.get('firstName')?.hasError('minLength')" class="text-danger d-block">
+            The first name must have 3 characters as min
+        </span>
+        <span *ngIf="userForm?.get('firstName')?.hasError('maxLength')" class="text-danger d-block">
+            The first name must have 20 characters as max
+        </span>
+    </div>
+
+    <div class="mb-3">
+        <label for="lastName" class="d-block">Last Name: <label style="color: red;">(*)</label></label>
+        <input type="text" id="lastName" formControlName="lastName" class="w-100">
+        <span *ngIf="userForm?.get('lastName')?.hasError('required')" class="text-danger d-block">
+            This field is required (*)
+        </span>
+        <span *ngIf="userForm?.get('lastName')?.hasError('minLength')"lass="text-danger d-block">
+            The last name must have 3 characters as min
+        </span>
+        <span *ngIf="userForm?.get('lastName')?.hasError('maxLength')" class="text-danger d-block">
+            The last name must have 20 characters as max
+        </span>
+    </div>
+
+    <div class="mb-3">
+        <label for="age" class="d-block">Age: <label style="color: red;">(*)</label></label>
+        <input type="number" id="age" formControlName="age" class="w-100">
+        <span *ngIf="userForm?.get('age')?.hasError('required')" class="text-danger d-block">
+            This field is required (*)
+        </span>
+    </div>
+
+    <div class="mb-3">
+        <label for="birthDay" class="d-block">Born Date: <label style="color: red;">(*)</label></label>
+        <input type="date" id="birthDay" formControlName="birthDay" max="2010-12-31" class="w-100">
+        <span *ngIf="userForm?.get('birthDay')?.hasError('required')" class="text-danger d-block">
+            This field is required (*)
+        </span>
+    </div>
+
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Save changes</button>
+    </div>
+</form>
